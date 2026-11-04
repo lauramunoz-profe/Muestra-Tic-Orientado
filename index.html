@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Muestra Anual 2026 · 5to TIC</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
 <style>
   :root{
     --ink:#070b14;
@@ -28,10 +28,10 @@
     line-height:1.5;
     overflow-x:hidden;
   }
-  h1,h2,.brand,.count{font-family:'Space Grotesk',sans-serif;}
+  h1,h2,h3,.brand,.count{font-family:'Space Grotesk',sans-serif;}
   .mono{font-family:'JetBrains Mono',monospace;}
 
-  /* ---------- fondo animado ---------- */
+  /* ---------- Fondo animado ---------- */
   .field{
     position:fixed; inset:0; z-index:0; overflow:hidden; pointer-events:none;
   }
@@ -64,7 +64,7 @@
     .field::before, .orb{animation:none;}
   }
 
-  /* ---------- nav ---------- */
+  /* ---------- Nav ---------- */
   nav{
     position:sticky; top:0; z-index:20;
     display:flex; align-items:center; gap:1.2rem;
@@ -75,10 +75,10 @@
   }
   .brand{font-size:1.05rem; font-weight:700; letter-spacing:.01em; white-space:nowrap; cursor:pointer;}
   .brand span{color:var(--teal);}
-  .nav-links{display:flex; gap:1.2rem; margin-right:auto; font-size:.92rem;}
+  .nav-links{display:flex; gap:0.8rem; margin-right:auto; font-size:.92rem;}
   .nav-links a{
     color:var(--muted); text-decoration:none; transition:color .2s, border-color .2s;
-    padding:.3rem .6rem; border-radius:6px; border:1px solid transparent;
+    padding:.4rem .7rem; border-radius:6px; border:1px solid transparent;
   }
   .nav-links a:hover, .nav-links a.active{
     color:var(--text); background:rgba(255,255,255,0.04); border-color:var(--line);
@@ -96,17 +96,16 @@
     font-family:inherit; font-size:.88rem; width:100%;
   }
   #search::placeholder{color:var(--muted);}
-  @media (max-width:768px){
+  @media (max-width:850px){
     .nav-links{display:none;}
     .search-wrap{min-width:140px;}
   }
 
-  /* ---------- hero ---------- */
+  /* ---------- Hero ---------- */
   header{
     position:relative; z-index:1;
     max-width:820px; margin:0 auto; text-align:center;
     padding:5rem 1.4rem 3rem;
-    min-height:calc(85vh - 68px);
     display:flex; flex-direction:column; align-items:center; justify-content:center;
     transition:opacity .4s ease, transform .4s ease;
   }
@@ -147,8 +146,8 @@
   header h1 em{font-style:normal; color:var(--teal);}
   header p{color:var(--muted); font-size:1.05rem; max-width:620px; margin:0 auto;}
 
-  /* ---------- grid & secciones ---------- */
-  main{position:relative; z-index:1; max-width:1180px; margin:0 auto; padding:0 1.4rem 5rem;}
+  /* ---------- Grid & Secciones ---------- */
+  main{position:relative; z-index:1; max-width:1180px; margin:0 auto; padding:2rem 1.4rem 5rem;}
   
   .section-header{
     margin-bottom:2rem;
@@ -191,7 +190,6 @@
   }
 
   .card-title{font-size:1.25rem; font-weight:600; margin-bottom:.8rem; letter-spacing:-.01em;}
-  
   .card-desc{ font-size:.88rem; color:var(--muted); margin-bottom:1.2rem; line-height:1.45; }
 
   .integrantes-label{
@@ -206,30 +204,25 @@
     display:inline-flex; align-items:center; justify-content:center; gap:.4rem;
     padding:.65rem 1rem; border-radius:9px; font-size:.88rem; font-weight:600;
     text-decoration:none; color:var(--ink); background:var(--teal);
-    transition:transform .2s, background .2s, gap .2s; width:100%;
+    transition:transform .2s, background .2s, gap .2s; width:100%; border:0; cursor:pointer;
   }
   .btn:hover{background:#8cf4e2; gap:.6rem;}
   .btn svg{transition:transform .2s;}
   .btn:hover svg{transform:translateX(2px);}
 
-  .btn-sim{
-    background:var(--amber); color:var(--ink);
-  }
+  .btn-sim{ background:var(--amber); color:var(--ink); }
   .btn-sim:hover{ background:#fcd397; }
 
   .empty{
-    display:none; text-align:center; color:var(--muted); padding:3rem 1rem;
-    font-size:.95rem;
+    display:none; text-align:center; color:var(--muted); padding:3rem 1rem; font-size:.95rem;
   }
   .empty.show{display:block;}
 
-  /* ---------- banner para padres ---------- */
+  /* ---------- Banner ---------- */
   .parents-banner{
     background: linear-gradient(135deg, rgba(21,31,61,0.9) 0%, rgba(16,24,48,0.9) 100%);
-    border: 1px solid rgba(246,193,119,0.3);
-    border-radius:16px;
-    padding:1.5rem 2rem;
-    margin-bottom:2.5rem;
+    border: 1px solid rgba(246,193,119,0.3); border-radius:16px;
+    padding:1.5rem 2rem; margin-bottom:2.5rem;
     display:flex; align-items:center; gap:1.5rem;
     box-shadow: 0 10px 30px -10px rgba(0,0,0,0.5);
   }
@@ -240,22 +233,175 @@
   .parents-banner-text h3{ font-size:1.15rem; color:var(--amber); margin-bottom:.3rem; }
   .parents-banner-text p{ font-size:.9rem; color:var(--muted); }
 
-  @media (max-width: 640px){
-    .parents-banner{ flex-direction:column; text-align:center; padding:1.2rem; }
+  /* ---------- Cuadro del Juego ---------- */
+  .game-frame {
+    background: var(--surface);
+    border: 2px solid var(--teal);
+    border-radius: 20px;
+    padding: 2rem;
+    max-width: 820px;
+    margin: 0 auto;
+    box-shadow: 0 0 35px rgba(94, 234, 212, 0.15), 0 15px 30px rgba(0,0,0,0.4);
+    position: relative;
+    overflow: hidden;
   }
+
+  .game-frame::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--teal), var(--indigo), var(--amber));
+  }
+
+  .timer-card {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    background: rgba(246, 193, 119, 0.12);
+    border: 1px solid rgba(246, 193, 119, 0.35);
+    padding: 0.6rem 1.2rem;
+    border-radius: 12px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--amber);
+    box-shadow: inset 0 0 10px rgba(246, 193, 119, 0.1);
+  }
+
+  .timer-card svg {
+    animation: pulse 1.5s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.92); }
+  }
+
+  .game-status-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--surface-2);
+    padding: 1rem 1.4rem;
+    border-radius: 14px;
+    margin-bottom: 1.8rem;
+    border: 1px solid var(--line);
+  }
+
+  .game-status-title {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.85rem;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .game-status-val {
+    font-weight: 700;
+    font-size: 1rem;
+    color: var(--teal);
+  }
+
+  /* Pista del Robot */
+  .track {
+    display: flex;
+    gap: 10px;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(7, 11, 20, 0.7);
+    padding: 1.6rem 1.2rem;
+    border-radius: 14px;
+    margin-bottom: 1.8rem;
+    border: 1px solid var(--line);
+    position: relative;
+    overflow-x: auto;
+  }
+
+  .track-step {
+    flex: 1;
+    height: 54px;
+    min-width: 48px;
+    border-radius: 10px;
+    background: var(--surface-2);
+    border: 1px solid var(--line);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    position: relative;
+    transition: all 0.3s ease;
+  }
+
+  .track-step.active {
+    border-color: var(--teal);
+    background: rgba(94, 234, 212, 0.18);
+    box-shadow: 0 0 15px rgba(94, 234, 212, 0.25);
+  }
+
+  .track-step.obstacle {
+    border-color: rgba(244, 63, 94, 0.5);
+    background: rgba(244, 63, 94, 0.12);
+  }
+
+  .track-step.goal {
+    border-color: rgba(246, 193, 119, 0.6);
+    background: rgba(246, 193, 119, 0.15);
+  }
+
+  .quiz-card {
+    background: var(--surface-2);
+    padding: 1.6rem;
+    border-radius: 14px;
+    border: 1px solid var(--line);
+  }
+
+  .quiz-question {
+    font-size: 1.15rem;
+    font-weight: 600;
+    margin-bottom: 1.2rem;
+    color: var(--text);
+  }
+
+  .quiz-options {
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+  }
+
+  .quiz-opt {
+    padding: 0.85rem 1.1rem;
+    border-radius: 10px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    color: var(--text);
+    font-family: inherit;
+    font-size: 0.93rem;
+    text-align: left;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .quiz-opt:hover {
+    border-color: var(--teal);
+    background: rgba(94, 234, 212, 0.08);
+    transform: translateX(4px);
+  }
+
+  .game-msg {
+    margin-top: 1.2rem;
+    font-weight: 600;
+    text-align: center;
+    min-height: 26px;
+    font-size: 0.95rem;
+  }
+  .game-msg.error { color: var(--rose); }
+  .game-msg.success { color: var(--teal); }
 
   footer{
     position:relative; z-index:1; text-align:center; color:var(--muted);
     font-size:.82rem; padding:2rem 1rem 3rem; border-top:1px solid var(--line);
     margin-top:4rem;
-  }
-
-  .card img, .card-img {
-    width: 100%;
-    max-height: 150px;
-    object-fit: contain;
-    border-radius: 8px;
-    margin-bottom: 10px;
   }
 </style>
 </head>
@@ -272,7 +418,8 @@
     <div class="nav-links">
       <a href="#" id="nav-inicio" class="active">Inicio</a>
       <a href="#" id="nav-robotica">Proyecto Robótica 2026</a>
-      <a href="#" id="nav-simulaciones">Simulaciones - Tinkercad</a>
+      <a href="#" id="nav-simulaciones">Simulaciones</a>
+      <a href="#" id="nav-juego">Desafío Robot 🤖</a>
     </div>
     <div class="search-wrap">
       <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
@@ -283,22 +430,22 @@
   <!-- Hero Section -->
   <header id="hero">
     <span class="badge">5to Año TIC Orientado — Muestra Anual 2026</span>
-    
+    <h1>Muestra de Robótica & <em>Sistemas Digitales</em></h1>
     <p>Explorá los sistemas, proyectos con sensores Arduino y simulaciones interactivas diseñadas por los alumnos para la Muestra Anual.</p>
     
     <div class="hero-buttons">
-      <button class="cta" id="cta-robotica">Ver Proyecto Robótica
+      <button class="cta" id="cta-robotica">Ver Proyectos de Robótica
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
       </button>
-      <button class="cta cta-sec" id="cta-simulaciones">Simulaciones Sensores ⚡
-      </button>
+      <button class="cta cta-sec" id="cta-simulaciones">Simulaciones Sensores ⚡</button>
+      <button class="cta cta-sec" id="cta-juego">Jugar Desafío Robot 🎮</button>
     </div>
   </header>
 
-  <!-- Main Content Container -->
+  <!-- Container Principal -->
   <main id="main-content" class="hide">
 
-    <!-- Sección 1: Proyecto Robótica 2026 -->
+    <!-- Sección 1: Proyecto Robótica -->
     <section id="sec-robotica" class="view-sec">
       <div class="section-header">
         <h2 class="section-title">Proyecto Robótica 2026</h2>
@@ -308,13 +455,10 @@
       <p class="result-count"><b class="count-val">6</b> proyectos registrados</p>
 
       <div class="grid cards-grid">
-
-        <!-- Grupo 1 -->
         <div class="card" data-name="grupo 1 sensor de luz robotica LDR fotorresistor arduino">
           <div>
             <span class="card-tag">Robótica / Hardware</span>
             <div class="card-title">Grupo 1 - Sensor de LUZ</div>
-          
             <div class="integrantes-label">
               <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
               integrantes
@@ -324,12 +468,10 @@
           <a href="#" target="_blank" class="btn">Ver Proyecto <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
         </div>
 
-        <!-- Grupo 2 -->
         <div class="card" data-name="grupo 2 sensor alarmas seguridad buzzer infrarrojo arduino">
           <div>
             <span class="card-tag">Robótica / Seguridad</span>
             <div class="card-title">Grupo 2 - Sensor ALARMAS</div>
-            
             <div class="integrantes-label">
               <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
               integrantes
@@ -339,12 +481,10 @@
           <a href="#" target="_blank" class="btn">Ver Proyecto <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
         </div>
 
-        <!-- Grupo 3 -->
         <div class="card" data-name="grupo 3 sensor temperatura lm35 dht11 termometro arduino">
           <div>
             <span class="card-tag">Robótica / Climatización</span>
             <div class="card-title">Grupo 3 - Sensor Temperatura</div>
-            
             <div class="integrantes-label">
               <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
               integrantes
@@ -354,12 +494,11 @@
           <a href="#" target="_blank" class="btn">Ver Proyecto <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
         </div>
 
-        <!-- Grupo 4 -->
         <div class="card" data-name="grupo 4 sensor de humedad riego tierra dht11 arduino">
           <div>
             <span class="card-tag">Robótica / Agronomía</span>
             <div class="card-title">Grupo 4 - Sensor de Humedad</div>
-            
+            <div class="integrantes-label">
               <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
               integrantes
             </div>
@@ -368,12 +507,11 @@
           <a href="#" target="_blank" class="btn">Ver Proyecto <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
         </div>
 
-        <!-- Grupo 5 -->
         <div class="card" data-name="grupo 5 sensor de movimiento pir presencia infrarrojo arduino">
           <div>
             <span class="card-tag">Robótica / Domótica</span>
             <div class="card-title">Grupo 5 - Sensor De Movimiento</div>
-           
+            <div class="integrantes-label">
               <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
               integrantes
             </div>
@@ -382,12 +520,10 @@
           <a href="#" target="_blank" class="btn">Ver Proyecto <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
         </div>
 
-        <!-- Grupo 6 -->
         <div class="card" data-name="grupo 6 pantalla led display lcd matriz arduino">
           <div>
             <span class="card-tag">Robótica / Interfaces</span>
             <div class="card-title">Grupo 6 - Pantalla LED</div>
-            
             <div class="integrantes-label">
               <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
               integrantes
@@ -396,90 +532,118 @@
           </div>
           <a href="#" target="_blank" class="btn">Ver Proyecto <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
         </div>
-
       </div>
     </section>
 
-    <!-- Sección 2: Simulaciones Interactive Tinkercad (Pensada para los Padres) -->
+    <!-- Sección 2: Simulaciones Tinkercad -->
     <section id="sec-simulaciones" class="view-sec" style="display:none;">
-      
-      <!-- Banner especial de bienvenida para la familia -->
       <div class="parents-banner">
-        
-      <div class="section-header">
-        <h2 class="section-title">Simulaciones de Tinkercad y Actividades</h2>
-        <p class="section-desc">Accedé a los circuitos interactivos virtualizados de las actividades de clase como <b>"Sensores"</b> y <b>"Diseña el Monumento de Tu Ciudad Ideal"</b>.</p>
+        <div class="parents-banner-icon">💡</div>
+        <div class="parents-banner-text">
+          <h3>Espacio para Familias y Visitantes</h3>
+          <p>Explorá los diseños interactivos virtuales creados durante las prácticas de aula.</p>
+        </div>
       </div>
 
-      <p class="result-count"><b class="count-val">2</b> actividades interactivas disponibles</p>
+      <div class="section-header">
+        <h2 class="section-title">Simulaciones de Tinkercad</h2>
+        <p class="section-desc">Accedé a los circuitos interactivos virtualizados de las actividades de clase.</p>
+      </div>
+
+      <p class="result-count"><b class="count-val">2</b> actividades disponibles</p>
 
       <div class="grid cards-grid">
-
-        <!-- Actividad 1: Sensores -->
         <div class="card" data-name="sensores tinkercad simulacion circuitos actividad">
           <div>
             <span class="card-tag sim">Simulación Virtual</span>
             <div class="card-title">Actividad: Sensores</div>
-            <p class="card-desc">Colección de circuitos de pruebas donde los alumnos exploraron la integración de componentes analógicos y digitales en Tinkercad.</p>
+            <p class="card-desc">Colección de circuitos de pruebas donde se integran componentes analógicos y digitales en Tinkercad.</p>
             <div class="integrantes-label">
               <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
               participación
             </div>
-            <div class="integrantes-list"><span class="who">35 Estudiantes en clase</span></div>
+            <div class="integrantes-list"><span class="who">35 Estudiantes</span></div>
           </div>
-          <!-- Reemplazar el href con el enlace real de Tinkercad si es necesario -->
           <a href="https://www.tinkercad.com" target="_blank" class="btn btn-sim">Abrir Simulación en Tinkercad <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14 21 3"/></svg></a>
         </div>
 
-        <!-- Actividad 2: Monumento Ciudad Ideal -->
         <div class="card" data-name="diseña el monumento de tu ciudad ideal tinkercad 3d diseño simulacion">
           <div>
             <span class="card-tag sim">Diseño 3D & Luces</span>
-            <div class="card-title">Diseña el Monumento de Tu Ciudad Ideal</div>
-            <p class="card-desc">Proyecto integrador que combina modelado 3D de arquitecturas urbanas con iluminación robótica programada.</p>
+            <div class="card-title">Monumento Ciudad Ideal</div>
+            <p class="card-desc">Proyecto integrador que combina modelado 3D de arquitecturas urbanas con iluminación programada.</p>
             <div class="integrantes-label">
               <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
               participación
             </div>
-            <div class="integrantes-list"><span class="who">35 Estudiantes en clase</span></div>
+            <div class="integrantes-list"><span class="who">35 Estudiantes</span></div>
           </div>
           <a href="https://www.tinkercad.com" target="_blank" class="btn btn-sim">Ver Modelo 3D / Simulación <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14 21 3"/></svg></a>
         </div>
-
       </div>
     </section>
 
-    <p class="empty" id="empty">No encontramos proyectos que coincidan con esa búsqueda.</p>
+    <!-- Sección 3: Juego en Cuadro con Tiempo -->
+    <section id="sec-juego" class="view-sec" style="display:none;">
+      <div class="section-header" style="text-align: center; max-width: 650px; margin: 0 auto 2rem;">
+        <h2 class="section-title">Desafío Robot Humano</h2>
+        <p class="section-desc">Respondé las preguntas de robótica para mover al robot a través del circuito con obstáculos antes de que venza el tiempo de 30 minutos.</p>
+      </div>
+
+      <!-- Cuadro Principal del Juego -->
+      <div class="game-frame">
+        <div class="game-status-bar">
+          <div>
+            <div class="game-status-title">Estado del Robot</div>
+            <div class="game-status-val" id="game-status-text">LISTO PARA AVANZAR</div>
+          </div>
+          <div class="timer-card">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            <span id="game-timer">30:00</span>
+          </div>
+        </div>
+
+        <div class="track" id="game-track">
+          <!-- El circuito se renderiza mediante JS -->
+        </div>
+
+        <div class="quiz-card" id="quiz-card">
+          <div class="quiz-question" id="quiz-question">Cargando desafío...</div>
+          <div class="quiz-options" id="quiz-options"></div>
+          <div class="game-msg" id="game-msg"></div>
+        </div>
+      </div>
+    </section>
+
+    <p class="empty" id="empty">No encontramos resultados que coincidan con la búsqueda.</p>
   </main>
 
-  <footer>5to TIC Orientado · Proyecto Robótica · Muestra Anual 2026</footer>
+  <footer>5to TIC Orientado · Muestra Anual 2026</footer>
 
 <script>
-  // Elementos principales
+  // Navegación
   const hero = document.getElementById('hero');
   const mainContent = document.getElementById('main-content');
-  
-  // Secciones
   const secRobotica = document.getElementById('sec-robotica');
   const secSimulaciones = document.getElementById('sec-simulaciones');
-  const allSections = [secRobotica, secSimulaciones];
+  const secJuego = document.getElementById('sec-juego');
+  const allSections = [secRobotica, secSimulaciones, secJuego];
 
-  // Links de navegación
   const navInicio = document.getElementById('nav-inicio');
   const navRobotica = document.getElementById('nav-robotica');
   const navSimulaciones = document.getElementById('nav-simulaciones');
+  const navJuego = document.getElementById('nav-juego');
   const brandLogo = document.getElementById('brand-logo');
 
-  // Botones Hero
   const ctaRobotica = document.getElementById('cta-robotica');
   const ctaSimulaciones = document.getElementById('cta-simulaciones');
+  const ctaJuego = document.getElementById('cta-juego');
 
-  // Buscador
   const inputSearch = document.getElementById('search');
   const emptyEl = document.getElementById('empty');
 
   function setActiveNavLink(link) {
-    [navInicio, navRobotica, navSimulaciones].forEach(l => l.classList.remove('active'));
+    [navInicio, navRobotica, navSimulaciones, navJuego].forEach(l => l.classList.remove('active'));
     if(link) link.classList.add('active');
   }
 
@@ -494,14 +658,15 @@
   function showSection(targetSec) {
     hero.classList.add('hide');
     mainContent.classList.remove('hide');
-
     allSections.forEach(sec => sec.style.display = 'none');
     targetSec.style.display = 'block';
 
-    revealCards(targetSec);
+    if(targetSec !== secJuego) {
+      revealCards(targetSec);
+    } else {
+      initGame();
+    }
     window.scrollTo({top: 0, behavior: 'smooth'});
-    
-    // resetear buscador al cambiar sección
     inputSearch.value = '';
     filterCards();
   }
@@ -513,39 +678,20 @@
     window.scrollTo({top: 0, behavior: 'smooth'});
   }
 
-  // Listeners para Secciones
-  ctaRobotica.addEventListener('click', () => {
-    showSection(secRobotica);
-    setActiveNavLink(navRobotica);
-  });
-
-  ctaSimulaciones.addEventListener('click', () => {
-    showSection(secSimulaciones);
-    setActiveNavLink(navSimulaciones);
-  });
+  ctaRobotica.addEventListener('click', () => { showSection(secRobotica); setActiveNavLink(navRobotica); });
+  ctaSimulaciones.addEventListener('click', () => { showSection(secSimulaciones); setActiveNavLink(navSimulaciones); });
+  ctaJuego.addEventListener('click', () => { showSection(secJuego); setActiveNavLink(navJuego); });
 
   navInicio.addEventListener('click', e => { e.preventDefault(); showInicio(); });
   brandLogo.addEventListener('click', () => showInicio());
+  navRobotica.addEventListener('click', e => { e.preventDefault(); showSection(secRobotica); setActiveNavLink(navRobotica); });
+  navSimulaciones.addEventListener('click', e => { e.preventDefault(); showSection(secSimulaciones); setActiveNavLink(navSimulaciones); });
+  navJuego.addEventListener('click', e => { e.preventDefault(); showSection(secJuego); setActiveNavLink(navJuego); });
 
-  navRobotica.addEventListener('click', e => {
-    e.preventDefault();
-    showSection(secRobotica);
-    setActiveNavLink(navRobotica);
-  });
-
-  navSimulaciones.addEventListener('click', e => {
-    e.preventDefault();
-    showSection(secSimulaciones);
-    setActiveNavLink(navSimulaciones);
-  });
-
-  // Filtrado y Búsqueda activa
   function filterCards() {
     const query = inputSearch.value.trim().toLowerCase();
-    
-    // Identificar sección visible
     const currentSec = allSections.find(s => s.style.display !== 'none');
-    if(!currentSec) return;
+    if(!currentSec || currentSec === secJuego) return;
 
     const cards = currentSec.querySelectorAll('.card');
     const countVal = currentSec.querySelector('.count-val');
@@ -562,6 +708,121 @@
   }
 
   inputSearch.addEventListener('input', filterCards);
+
+  /* ---------- Juego Desafío Robot con Cuadro y Temporizador ---------- */
+  const questions = [
+    { q: "¿Qué sensor mide la intensidad de luz ambiente?", options: ["LDR (Fotorresistor)", "Buzzer Sonoro", "Sensor PIR"], correct: 0 },
+    { q: "¿Qué función principal cumple un sensor PIR?", options: ["Medir la humedad", "Detectar movimiento infrarrojo", "Controlar un display"], correct: 1 },
+    { q: "¿Qué rol desempeña la placa Arduino en el proyecto?", options: ["Microcontrolador programable", "Fuente de alimentación", "Pantalla de salida"], correct: 0 },
+    { q: "¿Qué sensor se utiliza para evaluar la humedad en suelo o riego?", options: ["Higrómetro / DHT11", "Sensor LDR", "Led RGB"], correct: 0 },
+    { q: "¿Para qué sirve el software Tinkercad en robótica?", options: ["Simulación de circuitos y modelado 3D", "Control remoto de vehículos reales", "Edición de audio"], correct: 0 }
+  ];
+
+  let currentStep = 0;
+  const totalSteps = 6;
+  let timerInterval = null;
+  let timeLeft = 30 * 60; // 30 Minutos en segundos
+
+  function initGame() {
+    currentStep = 0;
+    timeLeft = 30 * 60;
+    renderTrack();
+    loadQuestion();
+    startTimer();
+    document.getElementById('game-status-text').textContent = "EN CURSO";
+    document.getElementById('game-status-text').style.color = "var(--teal)";
+    document.getElementById('game-msg').textContent = "";
+  }
+
+  function startTimer() {
+    clearInterval(timerInterval);
+    updateTimerDisplay();
+    timerInterval = setInterval(() => {
+      timeLeft--;
+      updateTimerDisplay();
+      if(timeLeft <= 0) {
+        clearInterval(timerInterval);
+        document.getElementById('game-status-text').textContent = "¡TIEMPO AGOTADO! REINICIANDO...";
+        document.getElementById('game-status-text').style.color = "var(--rose)";
+        setTimeout(initGame, 2000);
+      }
+    }, 1000);
+  }
+
+  function updateTimerDisplay() {
+    const min = Math.floor(timeLeft / 60).toString().padStart(2, '0');
+    const sec = (timeLeft % 60).toString().padStart(2, '0');
+    document.getElementById('game-timer').textContent = `${min}:${sec}`;
+  }
+
+  function renderTrack() {
+    const track = document.getElementById('game-track');
+    track.innerHTML = '';
+    for(let i = 0; i < totalSteps; i++) {
+      const step = document.createElement('div');
+      step.className = `track-step ${i === currentStep ? 'active' : ''}`;
+      
+      if(i === 2 || i === 4) {
+        step.classList.add('obstacle');
+        step.innerHTML = i === currentStep ? '🤖' : '🧱';
+      } else if(i === totalSteps - 1) {
+        step.classList.add('goal');
+        step.innerHTML = i === currentStep ? '🤖' : '🏁';
+      } else {
+        step.innerHTML = i === currentStep ? '🤖' : '';
+      }
+      track.appendChild(step);
+    }
+  }
+
+  function loadQuestion() {
+    const qIndex = currentStep % questions.length;
+    const qData = questions[qIndex];
+    document.getElementById('quiz-question').textContent = `Paso ${currentStep + 1} de ${totalSteps}: ${qData.q}`;
+    
+    const optionsContainer = document.getElementById('quiz-options');
+    optionsContainer.innerHTML = '';
+
+    qData.options.forEach((opt, idx) => {
+      const btn = document.createElement('button');
+      btn.className = 'quiz-opt';
+      btn.textContent = opt;
+      btn.onclick = () => checkAnswer(idx, qData.correct);
+      optionsContainer.appendChild(btn);
+    });
+  }
+
+  function checkAnswer(selected, correct) {
+    const msg = document.getElementById('game-msg');
+    if(selected === correct) {
+      currentStep++;
+      msg.className = "game-msg success";
+      msg.textContent = "¡Respuesta correcta! El robot avanza un paso.";
+      renderTrack();
+
+      if(currentStep >= totalSteps - 1) {
+        msg.textContent = "🏆 ¡Excelente! El robot cruzó la meta con éxito.";
+        document.getElementById('game-status-text').textContent = "¡VICTORIA!";
+        document.getElementById('game-status-text').style.color = "var(--amber)";
+        clearInterval(timerInterval);
+        document.getElementById('quiz-options').innerHTML = `<button class="btn" onclick="initGame()">Volver a jugar</button>`;
+      } else {
+        setTimeout(() => {
+          msg.textContent = "";
+          loadQuestion();
+        }, 1000);
+      }
+    } else {
+      msg.className = "game-msg error";
+      msg.textContent = "❌ Respuesta incorrecta. El robot tropezó con un obstáculo y vuelve al inicio.";
+      currentStep = 0;
+      renderTrack();
+      setTimeout(() => {
+        msg.textContent = "";
+        loadQuestion();
+      }, 1500);
+    }
+  }
 </script>
 
 </body>
