@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Desafíos Robótica por Grupos · 5to TIC</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#070b14;
+    --surface:#101830;
+    --surface-2:#151f3d;
+    --line:rgba(148,163,209,0.16);
+    --text:#e8edfb;
+    --muted:#8b96b8;
+    --teal:#5eead4;
+    --indigo:#8b8ef2;
+    --amber:#f6c177;
+    --rose:#f43f5e;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{
+    background:var(--ink);
+    color:var(--text);
+    font-family:'Inter',sans-serif;
+    line-height:1.5;
+    overflow-x:hidden;
+  }
+  h1,h2,h3,.brand{font-family:'Space Grotesk',sans-serif;}
+
+  /* ---------- Nav ---------- */
+  nav{
+    position:sticky; top:0; z-index:20;
+    display:flex; align-items:center; gap:1.2rem;
+    padding:1rem clamp(1.2rem,4vw,3rem);
+    background:rgba(7,11,20,0.85);
+    backdrop-filter:blur(14px);
+    border-bottom:1px solid var(--line);
+  }
+  .brand{font-size:1.05rem; font-weight:700; cursor:pointer;}
+  .brand span{color:var(--teal);}
+  .nav-links{display:flex; gap:0.8rem; font-size:.92rem;}
+  .nav-links a{
+    color:var(--muted); text-decoration:none; padding:.4rem .7rem; border-radius:6px;
+  }
+  .nav-links a.active{ color:var(--teal); font-weight:600; background:rgba(255,255,255,0.04); }
+
+  main{ max-width:900px; margin:0 auto; padding:3rem 1.4rem; }
+
+  /* Selector de Grupos */
+  .group-tabs {
+    display: flex; flex-wrap: wrap; gap: 0.6rem; justify-content: center; margin-bottom: 2.5rem;
+  }
+  .tab-btn {
+    background: var(--surface-2); border: 1px solid var(--line); color: var(--text);
+    padding: 0.6rem 1.1rem; border-radius: 10px; font-weight: 600; cursor: pointer;
+    font-family: inherit; font-size: 0.9rem; transition: all 0.2s;
+  }
+  .tab-btn:hover, .tab-btn.active {
+    background: var(--teal); color: var(--ink); border-color: var(--teal);
+  }
+
+  /* Cuadro del Juego */
+  .game-frame {
+    background: var(--surface); border: 2px solid var(--teal); border-radius: 20px;
+    padding: 2rem; box-shadow: 0 0 35px rgba(94, 234, 212, 0.15); position: relative;
+  }
+
+  .game-header { margin-bottom: 1.5rem; text-align: center; }
+  .game-header h2 { font-size: 1.6rem; color: var(--teal); margin-bottom: 0.3rem; }
+  .game-header p { font-size: 0.9rem; color: var(--muted); }
+
+  .game-status-bar {
+    display: flex; justify-content: space-between; align-items: center;
+    background: var(--surface-2); padding: 0.8rem 1.2rem; border-radius: 12px;
+    margin-bottom: 1.5rem; border: 1px solid var(--line);
+  }
+
+  .timer-card {
+    display: inline-flex; align-items: center; gap: 0.5rem; background: rgba(246, 193, 119, 0.12);
+    border: 1px solid rgba(246, 193, 119, 0.35); padding: 0.4rem 0.9rem; border-radius: 8px;
+    font-family: 'JetBrains Mono', monospace; color: var(--amber); font-weight: 700;
+  }
+
+  .track {
+    display: flex; gap: 8px; justify-content: space-between; align-items: center;
+    background: rgba(7, 11, 20, 0.7); padding: 1.2rem 1rem; border-radius: 14px;
+    margin-bottom: 1.5rem; border: 1px solid var(--line); overflow-x: auto;
+  }
+  .track-step {
+    flex: 1; height: 48px; min-width: 40px; border-radius: 8px; background: var(--surface-2);
+    border: 1px solid var(--line); display: flex; align-items: center; justify-content: center;
+    font-size: 1.3rem; transition: all 0.3s;
+  }
+  .track-step.active { border-color: var(--teal); background: rgba(94, 234, 212, 0.18); }
+
+  .quiz-card { background: var(--surface-2); padding: 1.5rem; border-radius: 14px; border: 1px solid var(--line); }
+  .quiz-question { font-size: 1.1rem; font-weight: 600; margin-bottom: 1rem; }
+  .quiz-options { display: flex; flex-direction: column; gap: 0.6rem; }
+  .quiz-opt {
+    padding: 0.8rem 1rem; border-radius: 8px; background: var(--surface);
+    border: 1px solid var(--line); color: var(--text); font-family: inherit;
+    font-size: 0.9rem; text-align: left; cursor: pointer; transition: all 0.2s;
+  }
+  .quiz-opt:hover { border-color: var(--teal); background: rgba(94, 234, 212, 0.08); }
+
+  .game-msg { margin-top: 1rem; font-weight: 600; text-align: center; min-height: 24px; font-size: 0.9rem; }
+  .game-msg.error { color: var(--rose); }
+  .game-msg.success { color: var(--teal); }
+
+  footer{ text-align:center; color:var(--muted); font-size:.82rem; padding:2rem 1rem; margin-top:3rem; }
+</style>
+</head>
+<body>
+
+  <nav>
+    <div class="brand" onclick="window.location.href='index.html'">5to<span>TIC</span></div>
+    <div class="nav-links">
+      <a href="index.html">Proyectos</a>
+      <a href="juegos.html" class="active">Desafíos & Juegos 🎮</a>
+    </div>
+  </nav>
+
+  <main>
+    <div class="group-tabs">
+      <button class="tab-btn active" onclick="selectGroup(1)">Grupo 1: LUZ</button>
+      <button class="tab-btn" onclick="selectGroup(2)">Grupo 2: ALARMAS</button>
+      <button class="tab-btn" onclick="selectGroup(3)">Grupo 3: TEMPERATURA</button>
+      <button class="tab-btn" onclick="selectGroup(4)">Grupo 4: HUMEDAD</button>
+      <button class="tab-btn" onclick="selectGroup(5)">Grupo 5: MOVIMIENTO</button>
+      <button class="tab-btn" onclick="selectGroup(6)">Grupo 6: PANTALLA LED</button>
+    </div>
+
+    <div class="game-frame">
+      <div class="game-header">
+        <h2 id="game-title">Desafío Grupo 1 - Sensor de Luz</h2>
+        <p id="game-desc">Demostrá tus conocimientos sobre sensores LDR para llevar al robot a la meta.</p>
+      </div>
+
+      <div class="game-status-bar">
+        <div>
+          <span style="font-size:0.8rem; color:var(--muted);">ESTADO: </span>
+          <b id="game-status-text" style="color:var(--teal);">EN CURSO</b>
+        </div>
+        <div class="timer-card">
+          <span>⏱️</span>
+          <span id="game-timer">15:00</span>
+        </div>
+      </div>
+
+      <div class="track" id="game-track"></div>
+
+      <div class="quiz-card" id="quiz-card">
+        <div class="quiz-question" id="quiz-question">Cargando pregunta...</div>
+        <div class="quiz-options" id="quiz-options"></div>
+        <div class="game-msg" id="game-msg"></div>
+      </div>
+    </div>
+  </main>
+
+  <footer>5to TIC Orientado · Muestra Anual 2026</footer>
+
+<script>
+  // Preguntas específicas por grupo
+  const groupData = {
+    1: {
+      title: "Desafío Grupo 1 - Sensor de Luz (LDR)",
+      desc: "Integrantes: Tobias Benitez, Moira Bogado, Martina Lopez, Bianca Lozano, Magali Romero, Kiara Toledo",
+      questions: [
+        { q: "¿Qué componente varía su resistencia según la luz recibida?", options: ["Fotorresistor (LDR)", "Buzzer", "PIR"], correct: 0 },
+        { q: "¿Qué sucede con la resistencia de una LDR al aumentarle la luz?", options: ["Disminuye", "Aumenta", "Se mantiene igual"], correct: 0 },
+        { q: "¿En qué pin de Arduino se suele leer una LDR?", options: ["Analógico (A0-A5)", "Digital Pin 13", "GND"], correct: 0 }
+      ]
+    },
+    2: {
+      title: "Desafío Grupo 2 - Sensor ALARMAS",
+      desc: "Integrantes: Melisa Bautista, Juan Vidale, Angelo Huarachi, Matias Huayta, Ayelen Quispe, Alexander Vasquez, Melody Vergaray, Nahuel Villarrubia",
+      questions: [
+        { q: "¿Qué componente genera una alerta sonora en un sistema de alarma?", options: ["Buzzer Piezoeléctrico", "LDR", "Sensor DHT11"], correct: 0 },
+        { q: "¿Qué tipo de señal se envía para activar una alarma simple?", options: ["Digital (HIGH/LOW)", "Analógica variable", "PWM pura"], correct: 0 }
+      ]
+    },
+    3: {
+      title: "Desafío Grupo 3 - Sensor Temperatura",
+      desc: "Integrantes: Micaela Encinas, Matias Fernandez, Andrea Guarachi, Angelina Huacara, Jennifer Mayta, Cristina Salazar, Damian Vega",
+      questions: [
+        { q: "¿Qué sensor integra lectura de temperatura y humedad ambiental?", options: ["DHT11 / DHT22", "Sensor LDR", "Buzzer"], correct: 0 },
+        { q: "La temperatura captada por sensores analógicos suele medirse en...", options: ["Volts convertidos a Grados Celsius", "Ohmios directo", "Lúmenes"], correct: 0 }
+      ]
+    },
+    4: {
+      title: "Desafío Grupo 4 - Sensor de Humedad",
+      desc: "Integrantes: Dylan Hidalgo, Santiago Juarez, Owen Rojas, Tiago Santillan, Axel Tapia, Ezequiel Torrejon",
+      questions: [
+        { q: "¿Qué sensor mide la humedad en el suelo para sistemas de riego?", options: ["Higrómetro de suelo", "LDR", "Sensor PIR"], correct: 0 },
+        { q: "¿Qué se activa cuando el suelo está seco?", options: ["Una bomba de agua o LED indicador", "Un buzzer continuo", "El sensor de temperatura"], correct: 0 }
+      ]
+    },
+    5: {
+      title: "Desafío Grupo 5 - Sensor De Movimiento",
+      desc: "Integrantes: Alejandra Berrios, Nuriel Nogales, Ayelen Oropeza",
+      questions: [
+        { q: "¿Qué significa las siglas del sensor PIR?", options: ["Passive Infrared Sensor", "Power Internal Light", "Programmed IR Sensor"], correct: 0 },
+        { q: "¿Qué radiación detecta el sensor PIR en los cuerpos humanos?", options: ["Radiación Infrarroja", "Luz Ultravioleta", "Microondas"], correct: 0 }
+      ]
+    },
+    6: {
+      title: "Desafío Grupo 6 - Pantalla LED / Display",
+      desc: "Integrantes: Serena Figueroa, Damaris Huallpa, Julieta Zambrana",
+      questions: [
+        { q: "¿Qué protocolo de comunicación se usa comúnmente con pantallas LCD para usar solo 2 pines?", options: ["I2C", "SPI", "Bluetooth"], correct: 0 },
+        { q: "¿Qué componente ajusta el contraste de un display 16x2?", options: ["Potenciómetro", "Capacitor", "Diodo Zener"], correct: 0 }
+      ]
+    }
+  };
+
+  let activeGroup = 1;
+  let currentStep = 0;
+  const totalSteps = 5;
+  let timerInterval = null;
+  let timeLeft = 15 * 60; // 15 minutos por partida
+
+  function selectGroup(num) {
+    activeGroup = num;
+    document.querySelectorAll('.tab-btn').forEach((btn, i) => {
+      btn.classList.toggle('active', i === num - 1);
+    });
+    initGame();
+  }
+
+  function initGame() {
+    currentStep = 0;
+    timeLeft = 15 * 60;
+    const data = groupData[activeGroup];
+    document.getElementById('game-title').textContent = data.title;
+    document.getElementById('game-desc').textContent = data.desc;
+    
+    document.getElementById('game-status-text').textContent = "EN CURSO";
+    document.getElementById('game-status-text').style.color = "var(--teal)";
+    document.getElementById('game-msg').textContent = "";
+    
+    renderTrack();
+    loadQuestion();
+    startTimer();
+  }
+
+  function startTimer() {
+    clearInterval(timerInterval);
+    updateTimerDisplay();
+    timerInterval = setInterval(() => {
+      timeLeft--;
+      updateTimerDisplay();
+      if(timeLeft <= 0) {
+        clearInterval(timerInterval);
+        document.getElementById('game-status-text').textContent = "¡TIEMPO AGOTADO!";
+        document.getElementById('game-status-text').style.color = "var(--rose)";
+      }
+    }, 1000);
+  }
+
+  function updateTimerDisplay() {
+    const min = Math.floor(timeLeft / 60).toString().padStart(2, '0');
+    const sec = (timeLeft % 60).toString().padStart(2, '0');
+    document.getElementById('game-timer').textContent = `${min}:${sec}`;
+  }
+
+  function renderTrack() {
+    const track = document.getElementById('game-track');
+    track.innerHTML = '';
+    for(let i = 0; i < totalSteps; i++) {
+      const step = document.createElement('div');
+      step.className = `track-step ${i === currentStep ? 'active' : ''}`;
+      if(i === totalSteps - 1) {
+        step.innerHTML = i === currentStep ? '🤖' : '🏁';
+      } else {
+        step.innerHTML = i === currentStep ? '🤖' : '';
+      }
+      track.appendChild(step);
+    }
+  }
+
+  function loadQuestion() {
+    const data = groupData[activeGroup];
+    const qIndex = currentStep % data.questions.length;
+    const currentQ = data.questions[qIndex];
+    
+    document.getElementById('quiz-question').textContent = currentQ.q;
+    const optionsContainer = document.getElementById('quiz-options');
+    optionsContainer.innerHTML = '';
+
+    currentQ.options.forEach((opt, idx) => {
+      const btn = document.createElement('button');
+      btn.className = 'quiz-opt';
+      btn.textContent = opt;
+      btn.addEventListener('click', () => checkAnswer(idx, currentQ.correct));
+      optionsContainer.appendChild(btn);
+    });
+  }
+
+  function checkAnswer(selected, correct) {
+    const msgEl = document.getElementById('game-msg');
+    
+    if (selected === correct) {
+      msgEl.className = 'game-msg success';
+      msgEl.textContent = '¡Correcto! El robot avanza.';
+      currentStep++;
+      
+      if (currentStep >= totalSteps) {
+        renderTrack();
+        clearInterval(timerInterval);
+        document.getElementById('game-status-text').textContent = '¡DESAFÍO COMPLETADO!';
+        document.getElementById('quiz-card').innerHTML = `<div class="quiz-question" style="text-align:center; color:var(--teal);">🎉 ¡Felicitaciones! Has superado todas las preguntas de este grupo.</div>`;
+        return;
+      }
+      
+      renderTrack();
+      setTimeout(() => {
+        msgEl.textContent = '';
+        loadQuestion();
+      }, 800);
+    } else {
+      msgEl.className = 'game-msg error';
+      msgEl.textContent = 'Respuesta incorrecta. Volvé a intentarlo.';
+    }
+  }
+
+  // Leer si viene un grupo por parámetro en la URL (?grupo=X)
+  const urlParams = new URLSearchParams(window.location.search);
+  const groupParam = parseInt(urlParams.get('grupo'));
+  if (groupParam && groupParam >= 1 && groupParam <= 6) {
+    selectGroup(groupParam);
+  } else {
+    initGame();
+  }
+</script>
+</body>
+</html>
